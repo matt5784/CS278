@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
 
@@ -25,14 +24,18 @@ public class DropboxCmdProcessorTest {
 
     private static final DropboxCmd COMMAND_ADD = new DropboxCmd();
     private static final DropboxCmd COMMAND_REMOVE = new DropboxCmd();
+    private static final int JUNK_SIZE = 7;
+    private static final String JUNK_PATH = "abc";
+    private static final byte[] JUNK_DATA = new byte[11];
 
     static {
         COMMAND_ADD.setOpCode(DropboxCmd.OpCode.ADD);
-        COMMAND_ADD.setPath("123");
-        final byte[] mockByte = new byte[10];
-        COMMAND_ADD.setData(mockByte);
+        COMMAND_ADD.setPath(JUNK_PATH);
+        COMMAND_ADD.setData(JUNK_DATA);
+
         COMMAND_REMOVE.setOpCode(DropboxCmd.OpCode.REMOVE);
-        COMMAND_REMOVE.setPath("456");
+        COMMAND_REMOVE.setPath(JUNK_PATH);
+        COMMAND_REMOVE.setData(JUNK_DATA);
     }
 
     @Mock FileStates mockFileStates;
@@ -67,13 +70,13 @@ public class DropboxCmdProcessorTest {
     @Test
     public void testUpdateFileStateRemove() {
         final DropboxCmdProcessor testClass = new DropboxCmdProcessor(mockFileStates, mockFileManager);
-        final FileState removedState = new FileState(7, null);
+        final FileState removedState = new FileState(JUNK_SIZE, null);
 
         assertNotNull("DropboxCmdProcessor must be initialized", testClass);
 
         Mockito.when(mockFileStates.getState(mockPath)).thenReturn(removedState);
 
-        assertEquals("Size must be 7", 7, removedState.getSize());
+        assertEquals("Size must be 7", JUNK_SIZE, removedState.getSize());
         testClass.updateFileState(COMMAND_REMOVE, mockPath);
         assertEquals("Size must be -1", -1, removedState.getSize());
     }
@@ -91,6 +94,15 @@ public class DropboxCmdProcessorTest {
 
         try {
             Mockito.verify(mockFileManager).write(mockPath, COMMAND_ADD.getData(), false);
+        } catch (final IOException e) {
+            e.printStackTrace();
+            fail("IOException!");
+        }
+
+        testClass.cmdReceived(COMMAND_REMOVE);
+
+        try {
+            Mockito.verify(mockFileManager).delete(mockPath);
         } catch (final IOException e) {
             e.printStackTrace();
             fail("IOException!");
