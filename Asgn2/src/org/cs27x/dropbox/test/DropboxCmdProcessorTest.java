@@ -42,7 +42,7 @@ public class DropboxCmdProcessorTest {
     @Mock DefaultFileManager mockFileManager;
     @Mock Path mockPath;
 
-    FileTime mockFileTime = FileTime.fromMillis(0);
+    FileTime mockFileTime = FileTime.fromMillis(0); //default
 
     public DropboxCmdProcessorTest() {
         MockitoAnnotations.initMocks(this);
