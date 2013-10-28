@@ -13,23 +13,24 @@
         android:cacheColorHint="@color/grey"
         android:listSelector="@android:color/transparent" />
 
-    <TextView
+    <EditText
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="false"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="false"
         android:layout_alignParentTop="true"
         android:layout_margin="5dp"
-        android:text="Rawr"
+        android:layout_toLeftOf="@+id/button1"
+        android:hint="Enter the description of your task..."
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
+        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/textView1"
-        android:text="Button" />
+        android:text="Add task!" />
 
 </RelativeLayout>

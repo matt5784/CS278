@@ -2,6 +2,8 @@ package edu.vu.task;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.magnum.soda.Soda;
@@ -19,13 +21,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 
 public class MainActivity extends ListActivity implements AndroidSodaListener{
 
     private static final String TAG = "TaskListMainActivity";
 
+    private final ArrayList<TaskItem> mTasks = new ArrayList<TaskItem>();
     private Soda mSoda;
+    private TaskAdapter mAdapter;
 
     public static String mHost;
 
@@ -46,20 +52,33 @@ public class MainActivity extends ListActivity implements AndroidSodaListener{
             Log.e("Property File not found",e.getLocalizedMessage());
         }
 
-        final CheckBox cbox1 = (CheckBox) findViewById(R.id.cbox1);
-        cbox1.setOnClickListener(new OnClickListener() {
+
+        final TaskItem v = new TaskItem().setChecked(true).setDescription("Describe me!").setDue("TOMORROW").setId(5);
+        mTasks.add(v);
+
+        updateListSize(mTasks.size());
+
+        final Button add = (Button) findViewById(R.id.button1);
+        add.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {
-                onUpdate();
+                final EditText desc = (EditText) findViewById(R.id.textView1);
+
+                final TaskItem temp = new TaskItem();
+
+                temp.setDescription(desc.getText().toString());
+                //desc.clearComposingText();
+                desc.setText("");
+                temp.setChecked(false);
+                temp.setDue("Tomorrow");
+
+                mTasks.add(temp);
+
+                updateListSize(mTasks.size());
+                mAdapter.notifyDataSetChanged();
             }
-
         });
-
-
-        final TaskItem v = new TaskItem().setChecked(true).setDescription("Describe me!").setDue("TOMORROW").setId(5);
-        final TaskItem[] x = {v,v,v,v,v,v,v,v,v,v};
-        setListAdapter(new TaskAdapter(this, x));
     }
 
     @Override
@@ -77,10 +96,12 @@ public class MainActivity extends ListActivity implements AndroidSodaListener{
                     @SodaInvokeInUi
                     public void itemAdded(final TaskItem r) {
                         reportHandle.addItem(r);
+                        mAdapter.notifyDataSetChanged();
                     }
                     @Override
                     public void itemChanged(final TaskItem r) {
                         reportHandle.addItem(r);
+                        mAdapter.notifyDataSetChanged();
                     }
                 });
             }
@@ -101,13 +122,31 @@ public class MainActivity extends ListActivity implements AndroidSodaListener{
         @Override
         public View getView(final int position, final View convertView, final ViewGroup parent) {
             if (data[position] != null) {
-                return data[position].getView(context, convertView, parent);
+                final View ret = data[position].getView(context, convertView, parent);
+
+                final CheckBox cbox1 = (CheckBox) ret.findViewById(R.id.cbox1);
+                cbox1.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        onUpdate();
+                    }
+                });
+
+                return ret;
             } else {
                 return null;
             }
         }
     }
 
+
+    private void updateListSize(final int size) {
+        final TaskItem[] temp = new TaskItem[size];
+        mTasks.toArray(temp);
+        mAdapter = new TaskAdapter(this, temp);
+        setListAdapter(mAdapter);
+    }
 
     @Override
     public void connected(final AndroidSoda soda) {
