@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="82dp"
+    android:id="@+id/good_row_id"
+    android:background="@drawable/list_bg" >
+
+    <CheckBox
+        android:id="@+id/cbox1"
+        android:layout_width="50dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:background="@color/grey"
+        android:padding="2dp" />
+
+    <TextView
+        android:id="@+id/tvid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:layout_toRightOf="@+id/cbox1"
+        android:maxLines="1"
+        android:textColor="@android:color/black"
+        android:textSize="17dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvdesc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvid"
+        android:layout_toRightOf="@+id/cbox1"
+        android:layout_alignBaseline="@+id/cbox1"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textColor="@android:color/black"
+        android:textSize="13dip" />
+
+    <TextView
+        android:id="@+id/tvdue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvid"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dip"
+        android:textColor="@android:color/black"
+        android:textSize="12dip" />
+
+</RelativeLayout>
