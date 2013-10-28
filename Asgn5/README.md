@@ -1,0 +1,1 @@
+This project contains both the Java server and the Android client portions of a system which uses the SodaCloud framework to sync to-do lists. The project contains the coded implementations of these, some tests, and a vagrant framework to facilitate multiplatform and multi-person development. 
