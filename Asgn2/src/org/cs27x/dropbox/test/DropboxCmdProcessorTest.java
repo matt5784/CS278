@@ -13,6 +13,7 @@ import org.cs27x.dropbox.DropboxCmd;
 import org.cs27x.dropbox.DropboxCmdProcessor;
 import org.cs27x.filewatcher.FileState;
 import org.cs27x.filewatcher.FileStates;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -28,16 +29,6 @@ public class DropboxCmdProcessorTest {
     private static final String JUNK_PATH = "abc";
     private static final byte[] JUNK_DATA = new byte[11];
 
-    static {
-        COMMAND_ADD.setOpCode(DropboxCmd.OpCode.ADD);
-        COMMAND_ADD.setPath(JUNK_PATH);
-        COMMAND_ADD.setData(JUNK_DATA);
-
-        COMMAND_REMOVE.setOpCode(DropboxCmd.OpCode.REMOVE);
-        COMMAND_REMOVE.setPath(JUNK_PATH);
-        COMMAND_REMOVE.setData(JUNK_DATA);
-    }
-
     @Mock FileStates mockFileStates;
     @Mock DefaultFileManager mockFileManager;
     @Mock Path mockPath;
@@ -46,6 +37,17 @@ public class DropboxCmdProcessorTest {
 
     public DropboxCmdProcessorTest() {
         MockitoAnnotations.initMocks(this);
+    }
+
+    @BeforeClass
+    public void beforeTest() {
+        COMMAND_ADD.setOpCode(DropboxCmd.OpCode.ADD);
+        COMMAND_ADD.setPath(JUNK_PATH);
+        COMMAND_ADD.setData(JUNK_DATA);
+
+        COMMAND_REMOVE.setOpCode(DropboxCmd.OpCode.REMOVE);
+        COMMAND_REMOVE.setPath(JUNK_PATH);
+        COMMAND_REMOVE.setData(JUNK_DATA);
     }
 
     @Test
