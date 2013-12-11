@@ -3,6 +3,29 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="src" path="/TaskList"/>
-	<classpathentry kind="lib" path="libs/SodaCloudJetty-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/SodaCloudJetty-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/javaee-web-api-7.0.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-websocket-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-ajp-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-annotations-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-client-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-continuation-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-deploy-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-http-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-io-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-jmx-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-jndi-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-overlay-deployer-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-plus-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-policy-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-rewrite-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-security-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-server-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-servlet-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-servlets-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-util-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-webapp-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-xml-7.6.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.2.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
