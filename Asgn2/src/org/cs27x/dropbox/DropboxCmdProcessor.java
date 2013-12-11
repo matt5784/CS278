@@ -31,14 +31,7 @@ public class DropboxCmdProcessor implements DropboxTransportListener {
                     || cmd.getOpCode() == OpCode.UPDATE) {
                 final FileState state = fileStates_.getOrCreateState(resolved);
                 state.setSize(cmd.getData().length);
-                try {
-                    state.setLastModificationDate(Files
-                            .getLastModifiedTime(resolved));
-                } catch (final java.lang.Throwable t) {
-                    //This static method is difficult to test.
-                    //If we get here, our input was invalid. We will default to the epoch instead
-                    state.setLastModificationDate(FileTime.fromMillis(0));
-                }
+                state.setLastModificationDate(Files.getLastModifiedTime(resolved));
             }
         } catch (final Exception e) {
             throw new RuntimeException(e);

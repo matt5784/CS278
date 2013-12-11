@@ -19,7 +19,7 @@ public class DropboxCmd implements Serializable {
 		return from_;
 	}
 
-	public void setFrom(String from) {
+	public void setFrom(final String from) {
 		from_ = from;
 	}
 
@@ -27,7 +27,7 @@ public class DropboxCmd implements Serializable {
 		return path_;
 	}
 
-	public void setPath(String path) {
+	public void setPath(final String path) {
 		path_ = path;
 	}
 
@@ -35,7 +35,7 @@ public class DropboxCmd implements Serializable {
 		return data_;
 	}
 
-	public void setData(byte[] data) {
+	public void setData(final byte[] data) {
 		data_ = data;
 	}
 
@@ -43,7 +43,7 @@ public class DropboxCmd implements Serializable {
 		return opCode_;
 	}
 
-	public void setOpCode(OpCode opCode) {
+	public void setOpCode(final OpCode opCode) {
 		opCode_ = opCode;
 	}
 
