@@ -84,7 +84,7 @@ public class DropboxCmdProcessorTest {
     }
 
     @Test
-    public void testCmdReceived() {
+    public void testCmdReceived() throws IOException {
         final DropboxCmdProcessor testClass = new DropboxCmdProcessor(mockFileStates, mockFileManager);
 
         assertNotNull("DropboxCmdProcessor must be initialized", testClass);
@@ -94,20 +94,10 @@ public class DropboxCmdProcessorTest {
 
         testClass.cmdReceived(COMMAND_ADD);
 
-        try {
-            Mockito.verify(mockFileManager).write(mockPath, COMMAND_ADD.getData(), false);
-        } catch (final IOException e) {
-            e.printStackTrace();
-            fail("IOException!");
-        }
+        Mockito.verify(mockFileManager).write(mockPath, COMMAND_ADD.getData(), false);
 
         testClass.cmdReceived(COMMAND_REMOVE);
 
-        try {
-            Mockito.verify(mockFileManager).delete(mockPath);
-        } catch (final IOException e) {
-            e.printStackTrace();
-            fail("IOException!");
-        }
+        Mockito.verify(mockFileManager).delete(mockPath);
     }
 }
