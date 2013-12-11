@@ -4,5 +4,13 @@
     <string name="app_name">SodaCloudSMSExampleClient</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="connect_btn">Connect</string>
+    <string name="scan_btn">Or scan to connect...</string>
+    <string name="objref_hint">Obj ref URI</string>
+    <string name="objref">ObjRef...</string>
+    <string name="server_hint">Server IP address</string>
+    <string name="server">Server IP address...</string>
+    <string name="prompt">Enter server address</string>
+    <string name="desc">SMS Bridge</string>
 
 </resources>

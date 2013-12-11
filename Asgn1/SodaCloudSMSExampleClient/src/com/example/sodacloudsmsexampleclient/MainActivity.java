@@ -41,26 +41,18 @@ public class MainActivity extends Activity {
 		scan_ = (Button)findViewById(R.id.scan);
 		objRef_ = (EditText)findViewById(R.id.objRef);
 		server_ = (EditText)findViewById(R.id.server);
+	}
 
-		connect_.setOnClickListener(new View.OnClickListener() {
+	public void clickConnect(final View v) {
+	    final String server = server_.getText().toString();
+	    final String oref = objRef_.getText().toString();
+	    if (server.length() > 0 && oref.length() > 0) {
+	        connect(server, oref);
+	    }
+	}
 
-			@Override
-			public void onClick(final View v) {
-				final String server = server_.getText().toString();
-				final String oref = objRef_.getText().toString();
-				if(server.length() > 0 && oref.length() > 0){
-					connect(server,oref);
-				}
-			}
-		});
-
-		scan_.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(final View v) {
-				initiateScan();
-			}
-		});
+	public void clickScan(final View v) {
+	    initiateScan();
 	}
 
 	@Override

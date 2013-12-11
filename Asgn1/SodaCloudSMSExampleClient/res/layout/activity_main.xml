@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:contentDescription="SMS Bridge"
+    android:contentDescription="@string/desc"
     tools:context=".MainActivity" >
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="72dp"
-        android:text="Enter server address"
+        android:text="@string/prompt"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
@@ -22,8 +22,8 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:hint="Server IP address"
-        android:text="Server IP address..." >
+        android:hint="@string/server_hint"
+        android:text="@string/server" >
 
         <requestFocus />
     </EditText>
@@ -36,8 +36,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         android:ems="10"
-        android:hint="Obj ref URI"
-        android:text="ObjRef..." />
+        android:hint="@string/objref_hint"
+        android:text="@string/objref" />
 
     <Button
         android:id="@+id/scan"
@@ -45,7 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Or scan to connect..." />
+        android:onClick="clickScan"
+        android:text="@string/scan_btn" />
 
     <Button
         android:id="@+id/connect"
@@ -54,6 +55,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="18dp"
-        android:text="Connect" />
+        android:onClick="clickConnect"
+        android:text="@string/connect_btn" />"
 
 </RelativeLayout>
