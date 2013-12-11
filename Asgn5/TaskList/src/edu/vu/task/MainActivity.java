@@ -3,7 +3,6 @@ package edu.vu.task;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import org.magnum.soda.Soda;
@@ -79,6 +78,8 @@ public class MainActivity extends ListActivity implements AndroidSodaListener{
                 mAdapter.notifyDataSetChanged();
             }
         });
+
+        AndroidSoda.init(this, mHost, 8081, this);
     }
 
     @Override
@@ -151,8 +152,6 @@ public class MainActivity extends ListActivity implements AndroidSodaListener{
     @Override
     public void connected(final AndroidSoda soda) {
         this.mSoda = soda;
-
-        AndroidSoda.init(this, mHost, 8081, this);
     }
 
     @Override
