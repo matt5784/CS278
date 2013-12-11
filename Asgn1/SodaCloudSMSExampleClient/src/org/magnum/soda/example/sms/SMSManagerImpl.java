@@ -6,8 +6,8 @@
  */
 package org.magnum.soda.example.sms;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.magnum.soda.proxy.SodaAsync;
 
@@ -28,7 +28,7 @@ public class SMSManagerImpl implements SMSManager, SMSSender {
 
 	private static final String MESSAGES = "pdus";
 
-	private final List<SMSListener> mListenerList = new ArrayList<SMSListener>();
+	private final Set<SMSListener> mListenerSet = new HashSet<SMSListener>();
 
 	public SMSManagerImpl(final Context ctx){
 
@@ -44,7 +44,6 @@ public class SMSManagerImpl implements SMSManager, SMSSender {
 
 				// extract the list of sms messages from the data
 				final Object messages[] = (Object[]) bundle.get(MESSAGES);
-				final List<String> cmds = new ArrayList<String>();
 
 				// iterate through the sms messages and look for any
 				// commands that need to be executed
@@ -79,19 +78,19 @@ public class SMSManagerImpl implements SMSManager, SMSSender {
 
 	@Override
 	public void addListener(final SMSListener l) {
-		mListenerList.add(l);
+		mListenerSet.add(l);
 		l.smsSenderAdded(this);
 	}
 
 	@Override
 	public void removeListener(final SMSListener l) {
-		if(!mListenerList.remove(l)) {
+		if(!mListenerSet.remove(l)) {
 			Log.w(TAG, "Tried to remove a listener from the list, but it wasn't there");
 		}
 	}
 
 	public void received(final SMS sms){
-		for (final SMSListener l : mListenerList) {
+		for (final SMSListener l : mListenerSet) {
 			l.smsEvent(new SMSEvent(SMSEvent.EVENT_TYPE.RECEIVE, sms));
 		}
 	}
